@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ---------- CSS ---------- -->
+    <link rel="stylesheet" href="/css/auth.css" />
+  </head>
+
+  <body>
+    <div class="container" id="authContainer">
+      <!-- Login Form -->
+      <div id="loginForm">
+        <form action="/login" id="login" method="post">
+          <div class="form-header">Login</div>
+          <div class="form-body">
+            <label for="loginEmail">Email</label>
+            <input
+              type="email"
+              id="loginEmail"
+              name="email"
+              placeholder="you@example.com"
+            />
+
+            <label for="loginPassword">Password</label>
+            <input
+              type="password"
+              id="loginPassword"
+              name="password"
+              placeholder="••••••••"
+            />
+
+            <div class="error" id="loginError">
+              <%= locals.error_l ? error_l : "" %>
+            </div>
+
+            <button id="loginBtn">Log In</button>
+
+            <div class="toggle-link" id="showSignup">
+              Don't have an account? Sign up
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Signup Form (hidden by default) -->
+      <div id="signupForm" style="display: none">
+        <form action="/register" id="signup" method="post">
+          <div class="form-header">Create Account</div>
+          <div class="form-body">
+            <label for="signupName">Full Name</label>
+            <input
+              type="text"
+              name="name"
+              id="signupName"
+              placeholder="John Doe"
+            />
+
+            <label for="signupEmail">Email</label>
+            <input
+              type="email"
+              name="email"
+              id="signupEmail"
+              placeholder="you@example.com"
+            />
+
+            <label for="country">Country</label>
+
+            <%- include('./partials/country', { selectedCountry: locals.country || '' }) %>
+
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+              "
+            >
+              <label for="signupPassword">Password</label>
+              <i class="toggle-password" id="togglePassword">Show</i>
+            </div>
+            <input
+              type="password"
+              id="signupPassword"
+              name="password"
+              maxlength="30"
+              placeholder="••••••••"
+            />
+
+            <div class="error" id="signupError">
+              <%= locals.error_r ? error_r : "" %>
+            </div>
+
+            <button id="signupBtn">Sign Up</button>
+
+            <div class="toggle-link" id="showLogin">
+              Already have an account? Log in
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ---------- JavaScript ---------- -->
+    <script src="/js/auth.js"></script>
+    <script>
+      const page = "<%= locals.page ? page : 'login' %>";
+      if (page === "register") {
+        document.getElementById("loginForm").style.display = "none";
+        document.getElementById("signupForm").style.display = "block";
+        document.querySelector("title").textContent = "Register";
+      } else {
+        document.getElementById("loginForm").style.display = "block";
+        document.getElementById("signupForm").style.display = "none";
+        document.querySelector("title").textContent = "Login";
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>OfonTech AI</h1>
+      <small class="text-secondary">OfonTech AI can make mistakes.</small>
+      <small><a href="/logout">Logout</a></small>
+      <form action="/ask" method="post">
+        <textarea
+          rows="1"
+          cols="1"
+          name="user_req"
+          id="userReq"
+          placeholder="Ask anything"
+        ></textarea>
+        <button type="submit" id="sendRequest" title="Ask">Ask</button>
+      </form>
+      <div class="response" id="response"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script type="module" src="/js/script.js"></script>
+  </body>
+</html>
